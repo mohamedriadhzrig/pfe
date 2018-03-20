@@ -23,6 +23,7 @@ public class Utilisateur implements Serializable{
 	private Long tel;
 	private String poste;
 	private String departement;
+	private String image;
 	public Long getIdUtilisateur() {
 		return idUtilisateur;
 	}
@@ -77,8 +78,14 @@ public class Utilisateur implements Serializable{
 	public void setDepartement(String departement) {
 		this.departement = departement;
 	}
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
+	}
 	public Utilisateur(String nom, String prenom, String email, String motDePasse, Date dateNaissance, Long tel,
-			String poste, String departement) {
+			String poste, String departement, String image) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
@@ -88,10 +95,12 @@ public class Utilisateur implements Serializable{
 		this.tel = tel;
 		this.poste = poste;
 		this.departement = departement;
+		this.image = image;
 	}
 	public Utilisateur() {
 		super();
 	}
+	
 	
 	
 }
