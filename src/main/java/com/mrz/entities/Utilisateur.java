@@ -2,10 +2,12 @@ package com.mrz.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 @Entity
@@ -20,10 +22,37 @@ public class Utilisateur implements Serializable{
 	private String motDePasse ;
 	@Temporal(TemporalType.DATE)
 	private Date dateNaissance;
-	private Long tel;
+	private String tel;
 	private String poste;
 	private String departement;
 	private String image;
+	@OneToMany(mappedBy="utilisateur")
+	private List<Article> articles;
+	@OneToMany(mappedBy="utilisateur")
+	private List<Demande> demandes;
+	@OneToMany(mappedBy="utilisateur")
+	private List<Commentaire> commentaires;
+	
+	public List<Commentaire> getCommentaires() {
+		return commentaires;
+	}
+	public void setCommentaires(List<Commentaire> commentaires) {
+		this.commentaires = commentaires;
+	}
+	@OneToMany
+	public List<Demande> getDemandes() {
+		return demandes;
+	}
+	public void setDemandes(List<Demande> demandes) {
+		this.demandes = demandes;
+	}
+	
+	public List<Article> getArticles() {
+		return articles;
+	}
+	public void setArticles(List<Article> articles) {
+		this.articles = articles;
+	}
 	public Long getIdUtilisateur() {
 		return idUtilisateur;
 	}
@@ -60,10 +89,10 @@ public class Utilisateur implements Serializable{
 	public void setDateNaissance(Date dateNaissance) {
 		this.dateNaissance = dateNaissance;
 	}
-	public Long getTel() {
+	public String getTel() {
 		return tel;
 	}
-	public void setTel(Long tel) {
+	public void setTel(String tel) {
 		this.tel = tel;
 	}
 	public String getPoste() {
@@ -84,7 +113,7 @@ public class Utilisateur implements Serializable{
 	public void setImage(String image) {
 		this.image = image;
 	}
-	public Utilisateur(String nom, String prenom, String email, String motDePasse, Date dateNaissance, Long tel,
+	public Utilisateur(String nom, String prenom, String email, String motDePasse, Date dateNaissance, String tel,
 			String poste, String departement, String image) {
 		super();
 		this.nom = nom;

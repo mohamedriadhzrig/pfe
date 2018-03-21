@@ -6,6 +6,7 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -20,6 +21,15 @@ public class Demande implements Serializable{
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateDemande;
 	private String satus;
+	@ManyToOne
+	private Utilisateur utilisateur;
+	
+	public Utilisateur getUtilisateur() {
+		return utilisateur;
+	}
+	public void setUtilisateur(Utilisateur utilisateur) {
+		this.utilisateur = utilisateur;
+	}
 	public Long getIdDemande() {
 		return idDemande;
 	}
@@ -56,6 +66,16 @@ public class Demande implements Serializable{
 		Contenu = contenu;
 		this.dateDemande = dateDemande;
 		this.satus = satus;
+	}
+	
+	
+	public Demande(String nomDemande, String contenu, Date dateDemande, String satus, Utilisateur utilisateur) {
+		super();
+		this.nomDemande = nomDemande;
+		Contenu = contenu;
+		this.dateDemande = dateDemande;
+		this.satus = satus;
+		this.utilisateur = utilisateur;
 	}
 	public Demande() {
 		super();

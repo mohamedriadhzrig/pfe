@@ -1,4 +1,4 @@
-package com.mrz.web;
+package com.mrz.controller;
 
 import java.util.List;
 
@@ -10,37 +10,38 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mrz.dao.DemandeRepository;
 import com.mrz.entities.Demande;
+import com.mrz.service.impl.DemandeService;
 
 
 @RestController
-public class DemandeService {
+public class DemandeController {
 
-	private DemandeRepository demandeRepository;
+	private DemandeService demandeService;
 	
 	@RequestMapping(value = "/demandes", method = RequestMethod.GET)
 	public List<Demande> getDemandes(){
-		return demandeRepository.findAll();
+		return demandeService.findAll();
 	}
 
 	@RequestMapping(value = "/demandes/{id}", method = RequestMethod.GET)
 	public Demande getDemandeAvecId(@PathVariable Long id) {
-		return demandeRepository.findOne(id);
+		return demandeService.findOne(id);
 	}
 
 	@RequestMapping(value = "/demandes", method = RequestMethod.POST)
 	public Demande ajouterDemande(@RequestBody Demande c) {
-		return demandeRepository.save(c);
+		return demandeService.save(c);
 	}
 	
 	@RequestMapping(value = "/demandes/{id}", method = RequestMethod.PUT)
 	public Demande mettreAJour(@PathVariable Long id,@RequestBody Demande c) {
 		c.setIdDemande(id);
-		return demandeRepository.save(c);
+		return demandeService.save(c);
 	}
 
 	@RequestMapping(value ="/demandes/{id}", method=RequestMethod.DELETE)
 	public boolean supprimer(@PathVariable Long id) {
-		demandeRepository.delete(id);
+		demandeService.delete(id);
 		return true;
 	}
 }

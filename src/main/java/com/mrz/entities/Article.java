@@ -6,6 +6,7 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -19,10 +20,19 @@ public class Article implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateArticle;
 	private String type;
-	private Long evaluation;
+	private int evaluation;
 	private String chemin;
 	private String description;
 	private String statut;
+	@ManyToOne
+	private Utilisateur utilisateur;
+	
+	public Utilisateur getUtilisateur() {
+		return utilisateur;
+	}
+	public void setUtilisateur(Utilisateur utilisateur) {
+		this.utilisateur = utilisateur;
+	}
 	public Long getIdArticle() {
 		return idArticle;
 	}
@@ -47,10 +57,10 @@ public class Article implements Serializable {
 	public void setType(String type) {
 		this.type = type;
 	}
-	public Long getEvaluation() {
+	public int getEvaluation() {
 		return evaluation;
 	}
-	public void setEvaluation(Long evaluation) {
+	public void setEvaluation(int evaluation) {
 		this.evaluation = evaluation;
 	}
 	public String getChemin() {
@@ -71,7 +81,7 @@ public class Article implements Serializable {
 	public void setStatut(String statut) {
 		this.statut = statut;
 	}
-	public Article(String nomArticle, Date dateArticle, String type, Long evaluation, String chemin, String description,
+	public Article(String nomArticle, Date dateArticle, String type, int evaluation, String chemin, String description,
 			String statut) {
 		super();
 		this.nomArticle = nomArticle;
@@ -81,6 +91,20 @@ public class Article implements Serializable {
 		this.chemin = chemin;
 		this.description = description;
 		this.statut = statut;
+	}
+	
+	
+	public Article(String nomArticle, Date dateArticle, String type, int evaluation, String chemin, String description,
+			String statut, Utilisateur utilisateur) {
+		super();
+		this.nomArticle = nomArticle;
+		this.dateArticle = dateArticle;
+		this.type = type;
+		this.evaluation = evaluation;
+		this.chemin = chemin;
+		this.description = description;
+		this.statut = statut;
+		this.utilisateur = utilisateur;
 	}
 	public Article() {
 		super();

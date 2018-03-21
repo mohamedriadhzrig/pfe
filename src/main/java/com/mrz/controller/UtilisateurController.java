@@ -1,4 +1,4 @@
-package com.mrz.web;
+package com.mrz.controller;
 
 import java.util.List;
 
@@ -11,36 +11,37 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mrz.dao.UtilisateurRepository;
 import com.mrz.entities.Utilisateur;
+import com.mrz.service.impl.UtilisateurService;
 
 @RestController
-public class UtilisateurService {
+public class UtilisateurController {
 	@Autowired 
-	private UtilisateurRepository utilisateurRepository;
+	private UtilisateurService utilisateurService;
 	
 	@RequestMapping(value = "/utilisateurs", method = RequestMethod.GET)
 	public List<Utilisateur> getUtilisateurs(){
-		return utilisateurRepository.findAll();
+		return utilisateurService.findAll();
 	}
 
 	@RequestMapping(value = "/utilisateurs/{id}", method = RequestMethod.GET)
 	public Utilisateur getUtilisateurAvecId(@PathVariable Long id) {
-		return utilisateurRepository.findOne(id);
+		return utilisateurService.findOne(id);
 	}
 
 	@RequestMapping(value = "/utilisateurs", method = RequestMethod.POST)
 	public Utilisateur ajouterUtilisateur(@RequestBody Utilisateur c) {
-		return utilisateurRepository.save(c);
+		return utilisateurService.save(c);
 	}
 	
 	@RequestMapping(value = "/utilisateurs/{id}", method = RequestMethod.PUT)
 	public Utilisateur mettreAJour(@PathVariable Long id,@RequestBody Utilisateur c) {
 		c.setIdUtilisateur(id);
-		return utilisateurRepository.save(c);
+		return utilisateurService.save(c);
 	}
 
 	@RequestMapping(value ="/utilisateurs/{id}", method=RequestMethod.DELETE)
 	public boolean supprimer(@PathVariable Long id) {
-		utilisateurRepository.delete(id);
+		utilisateurService.delete(id);
 		return true;
 	}
 

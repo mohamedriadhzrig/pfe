@@ -6,6 +6,7 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -18,7 +19,17 @@ public class Commentaire implements Serializable {
 	private String contenu;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateCommentaire;
-	private Long Evaluation;
+	private int Evaluation;
+	@ManyToOne
+	private Utilisateur utilisateur;
+	
+	
+	public Utilisateur getUtilisateur() {
+		return utilisateur;
+	}
+	public void setUtilisateur(Utilisateur utilisateur) {
+		this.utilisateur = utilisateur;
+	}
 	public Long getIdCommentaire() {
 		return idCommentaire;
 	}
@@ -37,17 +48,26 @@ public class Commentaire implements Serializable {
 	public void setDateCommentaire(Date dateCommentaire) {
 		this.dateCommentaire = dateCommentaire;
 	}
-	public Long getEvaluation() {
+	public int getEvaluation() {
 		return Evaluation;
 	}
-	public void setEvaluation(Long evaluation) {
+	public void setEvaluation(int evaluation) {
 		Evaluation = evaluation;
 	}
-	public Commentaire(String contenu, Date dateCommentaire, Long evaluation) {
+	public Commentaire(String contenu, Date dateCommentaire, int i) {
+		super();
+		this.contenu = contenu;
+		this.dateCommentaire = dateCommentaire;
+		Evaluation = i;
+	}
+	
+	
+	public Commentaire(String contenu, Date dateCommentaire, int evaluation, Utilisateur utilistaur) {
 		super();
 		this.contenu = contenu;
 		this.dateCommentaire = dateCommentaire;
 		Evaluation = evaluation;
+		this.utilisateur = utilistaur;
 	}
 	public Commentaire() {
 		super();
