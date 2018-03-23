@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class Utilisateur implements Serializable{
 	
@@ -26,10 +28,13 @@ public class Utilisateur implements Serializable{
 	private String poste;
 	private String departement;
 	private String image;
+	@JsonIgnore
 	@OneToMany(mappedBy="utilisateur")
 	private List<Article> articles;
+	@JsonIgnore
 	@OneToMany(mappedBy="utilisateur")
 	private List<Demande> demandes;
+	@JsonIgnore
 	@OneToMany(mappedBy="utilisateur")
 	private List<Commentaire> commentaires;
 	

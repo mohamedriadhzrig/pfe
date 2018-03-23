@@ -2,13 +2,17 @@ package com.mrz.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Article implements Serializable {
@@ -24,9 +28,19 @@ public class Article implements Serializable {
 	private String chemin;
 	private String description;
 	private String statut;
+	
 	@ManyToOne
 	private Utilisateur utilisateur;
+	@OneToMany(mappedBy="article") 
+	private List<Commentaire> commentaires;
 	
+	
+	public List<Commentaire> getCommentaires() {
+		return commentaires;
+	}
+	public void setCommentaires(List<Commentaire> commentaires) {
+		this.commentaires = commentaires;
+	}
 	public Utilisateur getUtilisateur() {
 		return utilisateur;
 	}

@@ -2,13 +2,12 @@ package com.mrz.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.mrz.dao.DemandeRepository;
 import com.mrz.entities.Demande;
 import com.mrz.service.impl.DemandeService;
 
@@ -16,6 +15,7 @@ import com.mrz.service.impl.DemandeService;
 @RestController
 public class DemandeController {
 
+	@Autowired
 	private DemandeService demandeService;
 	
 	@RequestMapping(value = "/demandes", method = RequestMethod.GET)

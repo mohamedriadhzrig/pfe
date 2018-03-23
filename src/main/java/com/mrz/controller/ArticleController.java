@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mrz.Iservice.IArticleService;
@@ -18,6 +19,12 @@ public class ArticleController {
 	
 	@Autowired
 	private IArticleService articleservice;
+	
+	@RequestMapping(value = "/articlesUtilisateur", method = RequestMethod.GET)
+	public List<Article> chercher(@RequestParam(name = "id") Long id) 
+	{
+		return articleservice.findByUser(id);
+	}
 	
 	@RequestMapping(value="/articles",method = RequestMethod.GET)
 	public List<Article> getArticles(){

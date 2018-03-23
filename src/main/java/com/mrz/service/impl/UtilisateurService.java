@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mrz.Iservice.IUtilisateurService;
-import com.mrz.dao.CommentaireRepository;
 import com.mrz.dao.UtilisateurRepository;
 import com.mrz.entities.Utilisateur;
 

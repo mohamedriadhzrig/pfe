@@ -10,6 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Commentaire implements Serializable {
 
@@ -22,8 +24,16 @@ public class Commentaire implements Serializable {
 	private int Evaluation;
 	@ManyToOne
 	private Utilisateur utilisateur;
+	@JsonIgnore
+	@ManyToOne
+	private Article article;
 	
-	
+	public Article getArticle() {
+		return article;
+	}
+	public void setArticle(Article article) {
+		this.article = article;
+	}
 	public Utilisateur getUtilisateur() {
 		return utilisateur;
 	}

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.mrz.Iservice.IArticleService;
 import com.mrz.dao.ArticleRepository;
 import com.mrz.entities.Article;
+import com.mrz.entities.Commentaire;
 
 @Service
 public class ArticleService implements IArticleService{
@@ -35,5 +36,13 @@ public class ArticleService implements IArticleService{
 	public void delete(Long id) {
 		articleRepo.delete(id);
 	}
+
+	@Override
+	public List<Article> findByUser(Long id) {
+		
+		return articleRepo.chercherLesArticlesDUtilisateur(id);
+	}
+
+	
 
 }

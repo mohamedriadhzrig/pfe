@@ -10,6 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Demande implements Serializable{
 
@@ -21,6 +23,7 @@ public class Demande implements Serializable{
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateDemande;
 	private String satus;
+	
 	@ManyToOne
 	private Utilisateur utilisateur;
 	
